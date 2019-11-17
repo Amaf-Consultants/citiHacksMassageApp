@@ -1,20 +1,145 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div style="background-color:#c450c4;padding:15px;text-align:center;">
+  <h2>Citi Hacks November 2019</h2>
+  <h4>Your limitation—it's only your imagination.</h4>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+
+<div style="overflow:auto">
+  <div class="menu">
+    <div class="menuitem" style='text-align:center;'>GO FOR THE WIN!!</div>
+  </div>
+
+  <div class="main">
+    <img src="assets/main-image.jpg" style="width:100%" />
+    <h4 [hidden]='hideRegTitle' style='text-align: center;'>Citi Hacks: User Subscription Form</h4>
+    <h4 [hidden]='!hideRegTitle' style='text-align: center;'>Citi Hacks: Send Messages</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col-25">
+          <label for="userid">User Id</label>
+        </div>
+        <div class="col-75">
+          <input
+            [(ngModel)]="userId"
+            #ctrl="ngModel"
+            required
+            type="email"
+            id="userid"
+            name="userid"
+            placeholder="Your email..."
+          />
+        </div>
+        <div class="row">
+          <div class="col-75">
+            <button style='color:white;background-color: blue;' (click)="checkUserId()">Search</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label for="name">User Name</label>
+          </div>
+          <div class="col-75">
+            <input
+              [(ngModel)]="userName"
+              #ctrl="ngModel"
+              required
+              type="text"
+              id="name"
+              name="fullname"
+              placeholder="Your name.."
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="department">Department</label>
+          </div>
+          <div class="col-75">
+            <select
+              name="department"
+              id="department"
+              class="form-control"
+              [(ngModel)]="selectedDepartment">
+              <option *ngFor="let d of departments" [value]="d.id">{{
+                d.label
+              }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="userLocation">Location</label>
+          </div>
+          <div class="col-75">
+            <select
+              name="userLocation"
+              id="userLocation"
+              class="form-control"
+              [(ngModel)]="selectedLocation"
+            >
+              <option *ngFor="let loc of locations" [value]="loc.id">{{
+                loc.label
+              }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="eventslist">Event</label>
+          </div>
+          <div class="col-75">
+            <select
+              name="eventName"
+
+              id="eventName"
+              class="form-control"
+              [(ngModel)]="selectedEvent"
+            >
+              <option *ngFor="let e of events" [value]="e.eventId">{{
+                e.eventName
+              }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" [hidden]="registeredBtn">
+          <button
+            class="btn"
+            (click)="onClickRegister()">
+            Register
+          </button>
+        </div>
+
+        <div class="row" [hidden]='questionbox'>
+          <div class="col-25">
+            <label for="subject" >Subject</label>
+          </div>
+          <div class="col-75">
+            <textarea
+              id="subject"
+              name="subject"
+              [(ngModel)]="userQuestion"
+              placeholder="Write something.."
+              style="height:200px"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="row" [hidden]='questionbox'>
+          <button class="btn" (click)="onSendMessage()">
+            Send
+          </button>
+           <!-- Send {{sendBtn}} and Register {{registeredBtn}} -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color:#e0678f;text-align:center;padding:10px;margin-top:7px;font-size:12px;"
+  >
+  <h3>Smart Tech Amazing Team</h3>
+  <h3>RealTime Messaging Application</h3>
+  </div>
+
+  <div id="snackbar" [className]="showSnackBar ? 'show' : ''">{{snackBarMessage}}..</div>
+</div>
